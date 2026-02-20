@@ -26,5 +26,52 @@
  * @returns {string} "weak", "medium", "strong", or "very strong"
  */
 export function checkPasswordStrength(password) {
-  // Your code here
+    if(typeof password !== "string") return "weak";
+    if(password.trim().length === 0) return "weak";
+    function uppercase(password){
+      for(let i = 0; i<password.length; i++){
+        if (password[i] >= 'A' && password[i] <= 'Z') {
+          return true;
+        } 
+      }
+      return false;
+    }
+    function lowercase(password){
+      for(let i = 0; i<password.length; i++){
+        if (password[i] >= 'a' && password[i] <= 'z') {
+          return true;
+        }
+      }
+      return false;
+    }
+    function hasnumber(password){
+      for(let i = 0; i<password.length; i++){
+           if(password[i] >= 0 && password[i] <=9){
+            return true;
+          }
+      }
+      return false;
+    }
+    function hassymbol(password){
+      for(let i = 0; i<password.length; i++){
+        let char = password[i];
+        if(!(char >= 'A' && char <= 'Z')&&
+           !(char >= 'a' && char <= 'z')&&
+           !(char >= '0'   && char <=  '9')){
+            return true;
+           }
+      }
+      return false;
+    }
+    let criteriacount = 0;
+    if(password.length >= 8) criteriacount++;
+    if(uppercase(password)) criteriacount++;
+    if(lowercase(password)) criteriacount++;
+    if(hasnumber(password)) criteriacount++;
+    if(hassymbol(password)) criteriacount++;
+
+    if(criteriacount <= 1) return "weak";
+    if(criteriacount <= 3) return "medium";
+    if(criteriacount <= 4) return "strong";
+    if(criteriacount <= 5) return "very strong";
 }

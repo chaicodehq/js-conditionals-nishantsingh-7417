@@ -22,5 +22,21 @@
  * @returns {string} The driving action to take
  */
 export function getTrafficAction(color) {
-  // Your code here
+  // first convert string to lowercase to match e.g green != Green. use color = color.tolowercase();
+  color = color.toLowerCase();
+  // USE SWITCH CASE TO MATCH CONDITION 
+  switch(color){
+    case "green" :
+    return "GO";
+    case "yellow":
+    return "SLOW DOWN";
+    case "red":
+    return "STOP";
+    case "flashing red":
+    return "STOP AND PROCEED WITH CAUTION";
+    // USER TYPE NONE COLOUR AND UNDIFINED TEXT
+    default:
+      return "INVALID SIGNAL";
+  }
+
 }
